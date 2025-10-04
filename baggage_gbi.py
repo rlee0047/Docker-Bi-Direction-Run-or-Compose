@@ -207,7 +207,7 @@ class App(tk.Tk):
         
         self.input_label = tk.Label(
             input_frame, 
-            text="Enter 'docker run' command OR 'docker-compose.yml' content below:", 
+            text="Enter 'docker run' command OR 'docker compose' below:", 
             anchor="w", 
             bg="#f0f0f0",
             font=("Arial", 10, "bold")
@@ -273,8 +273,8 @@ class App(tk.Tk):
         input_string = self.input_text.get("1.0", tk.END).strip()
 
         if not input_string:
-            self.display_output("Please enter a command or Docker Compose YAML to convert.")
-            self.update_status("Error: Input is empty.", color="red")
+            self.display_output("Nothing to convert! oof")
+            self.update_status("Where's the beef?", color="red")
             return
             
         input_type = determine_input_type(input_string)
@@ -288,9 +288,9 @@ class App(tk.Tk):
         elif input_type == "docker_compose":
             output_text = convert_compose_to_docker_run(input_string)
             conversion_direction = "Compose → Run"
-            self.update_output_label("Generated **docker run** command:")
+            self.update_output_label("Generated **Docker Run** command:")
         else:
-            output_text = "Error: Input is neither a recognizable 'docker run' command nor a Docker Compose YAML structure."
+            output_text = "Error: Input is neither a recognizable 'Docker Run' command nor a Docker Compose YAML structure."
             conversion_direction = "Unknown"
             self.update_output_label("Conversion Output:")
 
